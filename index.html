@@ -1,0 +1,1417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Zes Solutions – Digital Automation & Marketing Agency</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Nunito:wght@300;400;500;600;700&family=Orbitron:wght@700;900&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#070d1a;--bg2:#0c1426;--bg3:#111d35;
+  --cyan:#00e5ff;--cyan2:#00b8d4;--purple:#6c63ff;--orange:#ff6b35;
+  --glass:rgba(255,255,255,0.04);--glass2:rgba(255,255,255,0.08);
+  --border:rgba(0,229,255,0.15);--border2:rgba(0,229,255,0.3);
+  --text:#e8f4fd;--text2:#8ab4cf;--text3:#4a7090;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Nunito',sans-serif;font-size:16px;overflow-x:hidden}
+
+/* SCROLLBAR */
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--cyan2);border-radius:3px}
+
+/* ANIMATIONS */
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(0,229,255,0.4)}70%{box-shadow:0 0 0 12px rgba(0,229,255,0)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes slideIn{from{transform:translateX(100%);opacity:0}to{transform:translateX(0);opacity:1}}
+@keyframes fadeUp{from{transform:translateY(30px);opacity:0}to{transform:translateY(0);opacity:1}}
+@keyframes gradient{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+@keyframes scanline{0%{transform:translateY(-100%)}100%{transform:translateY(100vh)}}
+
+/* GRID BACKGROUND */
+body::before{content:'';position:fixed;top:0;left:0;width:100%;height:100%;
+  background-image:linear-gradient(rgba(0,229,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,229,255,0.03) 1px,transparent 1px);
+  background-size:60px 60px;pointer-events:none;z-index:0}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;width:100%;z-index:1000;padding:0 2rem;
+  background:rgba(7,13,26,0.85);backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);transition:all .3s}
+.nav-inner{max-width:1280px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:70px}
+.logo{font-family:'Orbitron',monospace;font-weight:900;font-size:1.4rem;
+  background:linear-gradient(90deg,var(--cyan),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:2px}
+.logo span{color:var(--orange);-webkit-text-fill-color:var(--orange)}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{color:var(--text2);text-decoration:none;font-size:.9rem;font-weight:600;letter-spacing:.5px;transition:color .3s;text-transform:uppercase}
+.nav-links a:hover{color:var(--cyan)}
+.nav-cta{display:flex;gap:.75rem}
+.btn{padding:.55rem 1.4rem;border-radius:8px;font-family:'Nunito',sans-serif;font-weight:700;font-size:.85rem;cursor:pointer;transition:all .3s;letter-spacing:.5px;border:none;text-decoration:none;display:inline-block}
+.btn-outline{background:transparent;border:1.5px solid var(--border2);color:var(--cyan)}
+.btn-outline:hover{background:rgba(0,229,255,0.1);border-color:var(--cyan)}
+.btn-primary{background:linear-gradient(135deg,var(--cyan),var(--cyan2));color:#070d1a;font-weight:700}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(0,229,255,0.35)}
+.btn-purple{background:linear-gradient(135deg,var(--purple),#9c63ff);color:#fff}
+.btn-purple:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(108,99,255,0.4)}
+.btn-orange{background:linear-gradient(135deg,var(--orange),#ff9f35);color:#fff}
+.btn-orange:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(255,107,53,0.4)}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:5px}
+.hamburger span{width:24px;height:2px;background:var(--cyan);border-radius:2px;transition:all .3s}
+
+/* HERO */
+#hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;padding:100px 2rem 4rem}
+.hero-content{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;position:relative;z-index:1}
+.hero-tag{display:inline-flex;align-items:center;gap:.5rem;background:rgba(0,229,255,0.1);border:1px solid var(--border);
+  border-radius:20px;padding:.35rem 1rem;font-size:.8rem;font-weight:700;color:var(--cyan);letter-spacing:1px;text-transform:uppercase;margin-bottom:1.5rem}
+.hero-tag::before{content:'';width:8px;height:8px;background:var(--cyan);border-radius:50%;animation:pulse 2s infinite}
+h1.hero-title{font-family:'Rajdhani',sans-serif;font-size:clamp(2.5rem,5vw,4.2rem);font-weight:700;line-height:1.1;margin-bottom:1.5rem}
+.hero-title .line1{color:var(--text)}
+.hero-title .line2{background:linear-gradient(90deg,var(--cyan),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-size:200%;animation:gradient 4s ease infinite}
+.hero-title .line3{color:var(--orange)}
+.hero-desc{color:var(--text2);font-size:1.05rem;line-height:1.8;margin-bottom:2.5rem;max-width:480px}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap}
+.hero-stats{display:flex;gap:2rem;margin-top:3rem;flex-wrap:wrap}
+.stat{text-align:center}
+.stat-num{font-family:'Rajdhani',sans-serif;font-size:2rem;font-weight:700;color:var(--cyan)}
+.stat-label{font-size:.8rem;color:var(--text2);font-weight:600;letter-spacing:.5px;text-transform:uppercase}
+/* HERO VISUAL */
+.hero-visual{position:relative;display:flex;justify-content:center;align-items:center}
+.orbit-wrap{position:relative;width:380px;height:380px}
+.orbit-center{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:120px;height:120px;background:linear-gradient(135deg,var(--cyan),var(--purple));
+  border-radius:24px;display:flex;align-items:center;justify-content:center;
+  font-family:'Orbitron',monospace;font-size:1.1rem;font-weight:900;color:#070d1a;
+  box-shadow:0 0 40px rgba(0,229,255,0.5);z-index:5;animation:float 3s ease-in-out infinite}
+.orbit-ring{position:absolute;top:50%;left:50%;border:1px dashed rgba(0,229,255,0.2);border-radius:50%}
+.ring1{width:200px;height:200px;margin:-100px 0 0 -100px;animation:spin 12s linear infinite}
+.ring2{width:310px;height:310px;margin:-155px 0 0 -155px;animation:spin 20s linear infinite reverse}
+.orbit-icon{position:absolute;width:52px;height:52px;background:var(--bg3);
+  border:1.5px solid var(--border2);border-radius:14px;display:flex;align-items:center;
+  justify-content:center;font-size:1.5rem;box-shadow:0 0 20px rgba(0,229,255,0.15)}
+.o1{top:-26px;left:calc(50% - 26px)}
+.o2{right:-26px;top:calc(50% - 26px)}
+.o3{bottom:-26px;left:calc(50% - 26px)}
+.o4{left:-26px;top:calc(50% - 26px)}
+.o5{top:20px;right:20px;border-color:rgba(108,99,255,0.4)}
+.o6{bottom:20px;left:20px;border-color:rgba(255,107,53,0.4)}
+/* HERO GLOW */
+.glow-blob{position:absolute;border-radius:50%;filter:blur(80px);pointer-events:none}
+.blob1{width:400px;height:400px;background:rgba(0,229,255,0.08);top:-100px;left:-200px}
+.blob2{width:300px;height:300px;background:rgba(108,99,255,0.08);bottom:-100px;right:-100px}
+
+/* SECTIONS */
+section{position:relative;z-index:1}
+.section{padding:6rem 2rem}
+.section-inner{max-width:1280px;margin:0 auto}
+.section-label{font-size:.8rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--cyan);margin-bottom:.75rem}
+.section-title{font-family:'Rajdhani',sans-serif;font-size:clamp(2rem,4vw,2.8rem);font-weight:700;color:var(--text);margin-bottom:1rem}
+.section-desc{color:var(--text2);font-size:1rem;max-width:600px;line-height:1.8}
+.section-head{margin-bottom:3.5rem}
+
+/* CARDS GRID */
+.cards-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem}
+.card{background:var(--glass);border:1px solid var(--border);border-radius:16px;padding:2rem;
+  transition:all .3s;position:relative;overflow:hidden}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--cyan),var(--purple));transform:scaleX(0);
+  transition:transform .3s;transform-origin:left}
+.card:hover{background:var(--glass2);border-color:var(--border2);transform:translateY(-4px)}
+.card:hover::before{transform:scaleX(1)}
+.card-icon{width:56px;height:56px;border-radius:14px;display:flex;align-items:center;
+  justify-content:center;font-size:1.6rem;margin-bottom:1.25rem}
+.icon-cyan{background:rgba(0,229,255,0.1);border:1px solid rgba(0,229,255,0.2)}
+.icon-purple{background:rgba(108,99,255,0.1);border:1px solid rgba(108,99,255,0.2)}
+.icon-orange{background:rgba(255,107,53,0.1);border:1px solid rgba(255,107,53,0.2)}
+.icon-green{background:rgba(0,200,120,0.1);border:1px solid rgba(0,200,120,0.2)}
+.icon-pink{background:rgba(255,100,150,0.1);border:1px solid rgba(255,100,150,0.2)}
+.card h3{font-family:'Rajdhani',sans-serif;font-size:1.3rem;font-weight:700;margin-bottom:.6rem;color:var(--text)}
+.card p{color:var(--text2);font-size:.92rem;line-height:1.7;margin-bottom:1.2rem}
+.card-tags{display:flex;flex-wrap:wrap;gap:.5rem}
+.tag{font-size:.72rem;font-weight:700;padding:.25rem .65rem;border-radius:20px;letter-spacing:.5px}
+.tag-cyan{background:rgba(0,229,255,0.1);color:var(--cyan);border:1px solid rgba(0,229,255,0.2)}
+.tag-purple{background:rgba(108,99,255,0.1);color:#a89fff;border:1px solid rgba(108,99,255,0.2)}
+.tag-orange{background:rgba(255,107,53,0.1);color:#ff9f35;border:1px solid rgba(255,107,53,0.2)}
+.card-price{font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--cyan);margin-top:1rem;border-top:1px solid var(--border);padding-top:1rem}
+.learn-more{color:var(--cyan);font-size:.85rem;font-weight:700;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:.4rem;transition:gap .2s}
+.learn-more:hover{gap:.7rem}
+
+/* PRODUCTS */
+#products{background:var(--bg2)}
+.product-card{background:var(--glass);border:1px solid var(--border);border-radius:20px;overflow:hidden;transition:all .3s}
+.product-card:hover{border-color:var(--border2);transform:translateY(-6px);box-shadow:0 20px 60px rgba(0,229,255,0.1)}
+.product-header{padding:1.75rem 1.75rem 0;display:flex;align-items:flex-start;justify-content:space-between}
+.product-badge{font-size:.7rem;font-weight:800;letter-spacing:1px;padding:.3rem .75rem;border-radius:20px;text-transform:uppercase}
+.badge-hot{background:rgba(255,107,53,0.15);color:var(--orange);border:1px solid rgba(255,107,53,0.3)}
+.badge-new{background:rgba(0,229,255,0.1);color:var(--cyan);border:1px solid rgba(0,229,255,0.2)}
+.badge-popular{background:rgba(108,99,255,0.1);color:#a89fff;border:1px solid rgba(108,99,255,0.2)}
+.product-body{padding:1.25rem 1.75rem}
+.product-features{list-style:none;margin:1rem 0}
+.product-features li{font-size:.88rem;color:var(--text2);padding:.35rem 0;display:flex;align-items:center;gap:.6rem}
+.product-features li::before{content:'✓';color:var(--cyan);font-weight:700;font-size:.9rem}
+.product-footer{padding:1.25rem 1.75rem 1.75rem;display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--border)}
+
+/* SERVICES */
+#services{background:var(--bg)}
+.services-tabs{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:2.5rem}
+.tab-btn{padding:.55rem 1.2rem;border-radius:8px;background:var(--glass);border:1px solid var(--border);
+  color:var(--text2);font-size:.85rem;font-weight:700;cursor:pointer;transition:all .3s;font-family:'Nunito',sans-serif}
+.tab-btn.active,.tab-btn:hover{background:rgba(0,229,255,0.1);border-color:var(--border2);color:var(--cyan)}
+.tab-content{display:none}
+.tab-content.active{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;animation:fadeUp .4s ease}
+
+/* PRICING */
+#pricing{background:var(--bg2)}
+.currency-bar{display:flex;align-items:center;gap:1rem;flex-wrap:wrap;margin-bottom:2.5rem;padding:1rem 1.5rem;
+  background:var(--glass);border:1px solid var(--border);border-radius:12px}
+.currency-bar label{font-size:.85rem;color:var(--text2);font-weight:600}
+.currency-select{background:var(--bg3);border:1px solid var(--border);border-radius:8px;color:var(--cyan);
+  padding:.45rem 1rem;font-family:'Nunito',sans-serif;font-size:.9rem;cursor:pointer;font-weight:600}
+.currency-info{margin-left:auto;font-size:.8rem;color:var(--text3)}
+.pricing-toggle{display:flex;align-items:center;gap:.75rem;margin-left:auto}
+.toggle-label{font-size:.85rem;color:var(--text2);font-weight:600}
+.toggle{position:relative;width:48px;height:26px}
+.toggle input{opacity:0;width:0;height:0}
+.slider-toggle{position:absolute;cursor:pointer;top:0;left:0;right:0;bottom:0;
+  background:var(--bg3);border:1px solid var(--border2);border-radius:26px;transition:.3s}
+.slider-toggle::before{content:'';position:absolute;height:18px;width:18px;left:4px;bottom:3px;
+  background:var(--text3);border-radius:50%;transition:.3s}
+.toggle input:checked+.slider-toggle{background:rgba(0,229,255,0.2);border-color:var(--cyan)}
+.toggle input:checked+.slider-toggle::before{transform:translateX(22px);background:var(--cyan)}
+.pricing-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem}
+.pricing-card{background:var(--glass);border:1px solid var(--border);border-radius:20px;padding:2rem;position:relative;transition:all .3s;overflow:hidden}
+.pricing-card.featured{border-color:var(--cyan);background:rgba(0,229,255,0.05)}
+.pricing-card.featured::after{content:'MOST POPULAR';position:absolute;top:1rem;right:1rem;
+  font-size:.65rem;font-weight:800;letter-spacing:1px;background:var(--cyan);color:#070d1a;
+  padding:.25rem .65rem;border-radius:20px}
+.pricing-card:hover{transform:translateY(-4px)}
+.plan-name{font-family:'Rajdhani',sans-serif;font-size:1.4rem;font-weight:700;color:var(--text);margin-bottom:.3rem}
+.plan-desc{font-size:.85rem;color:var(--text2);margin-bottom:1.5rem}
+.plan-price{font-family:'Rajdhani',sans-serif;margin-bottom:.25rem}
+.price-amount{font-size:2.8rem;font-weight:700;color:var(--cyan)}
+.price-period{font-size:.9rem;color:var(--text3)}
+.plan-features{list-style:none;margin:1.5rem 0;border-top:1px solid var(--border);padding-top:1.5rem}
+.plan-features li{font-size:.88rem;color:var(--text2);padding:.4rem 0;display:flex;align-items:flex-start;gap:.6rem;line-height:1.4}
+.plan-features li.no{color:var(--text3);text-decoration:line-through}
+.plan-features li .ck{color:var(--cyan);font-weight:700;flex-shrink:0}
+.plan-features li.no .ck{color:var(--text3)}
+.section-sep{height:1px;background:linear-gradient(90deg,transparent,var(--border2),transparent);margin:5rem 0}
+
+/* WHY US */
+#why{background:var(--bg)}
+.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+.why-visual{position:relative}
+.metric-cards{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.metric-card{background:var(--glass);border:1px solid var(--border);border-radius:16px;padding:1.5rem;text-align:center}
+.metric-card .num{font-family:'Rajdhani',sans-serif;font-size:2.2rem;font-weight:700;color:var(--cyan)}
+.metric-card .lbl{font-size:.8rem;color:var(--text2);font-weight:600;text-transform:uppercase;letter-spacing:.5px}
+.why-list{list-style:none;margin-top:2rem}
+.why-list li{display:flex;align-items:flex-start;gap:1rem;padding:1rem 0;border-bottom:1px solid var(--border)}
+.why-list li:last-child{border:none}
+.why-icon{width:40px;height:40px;border-radius:10px;background:rgba(0,229,255,0.1);
+  border:1px solid rgba(0,229,255,0.2);display:flex;align-items:center;justify-content:center;
+  font-size:1.1rem;flex-shrink:0}
+.why-text h4{font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--text);margin-bottom:.25rem}
+.why-text p{font-size:.88rem;color:var(--text2);line-height:1.6}
+
+/* CONTACT */
+#contact{background:var(--bg2)}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem}
+.contact-form{background:var(--glass);border:1px solid var(--border);border-radius:20px;padding:2.5rem}
+.form-group{margin-bottom:1.25rem}
+.form-group label{display:block;font-size:.85rem;font-weight:700;color:var(--text2);margin-bottom:.5rem;letter-spacing:.3px}
+.form-control{width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:10px;
+  padding:.75rem 1rem;color:var(--text);font-family:'Nunito',sans-serif;font-size:.95rem;
+  transition:border-color .3s;outline:none}
+.form-control:focus{border-color:var(--cyan)}
+.form-control::placeholder{color:var(--text3)}
+textarea.form-control{resize:vertical;min-height:120px}
+.contact-info{display:flex;flex-direction:column;gap:1.5rem;justify-content:center}
+.contact-item{display:flex;align-items:center;gap:1rem;padding:1.25rem;background:var(--glass);
+  border:1px solid var(--border);border-radius:12px;transition:border-color .3s}
+.contact-item:hover{border-color:var(--border2)}
+.ci-icon{width:46px;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0}
+.ci-text h4{font-size:.9rem;font-weight:700;color:var(--text);margin-bottom:.2rem}
+.ci-text p{font-size:.85rem;color:var(--text2)}
+.social-links{display:flex;gap:.75rem;margin-top:1.5rem;flex-wrap:wrap}
+.social-btn{display:flex;align-items:center;gap:.5rem;padding:.6rem 1.1rem;border-radius:10px;
+  font-size:.82rem;font-weight:700;text-decoration:none;transition:all .3s;border:1px solid var(--border)}
+.social-btn:hover{transform:translateY(-2px);border-color:var(--border2)}
+.sb-wa{background:rgba(37,211,102,0.08);color:#25d366;border-color:rgba(37,211,102,0.2)}
+.sb-ig{background:rgba(225,48,108,0.08);color:#e1306c;border-color:rgba(225,48,108,0.2)}
+.sb-li{background:rgba(0,119,181,0.08);color:#0077b5;border-color:rgba(0,119,181,0.2)}
+.sb-fb{background:rgba(66,103,178,0.08);color:#4267b2;border-color:rgba(66,103,178,0.2)}
+
+/* FOOTER */
+footer{background:var(--bg);border-top:1px solid var(--border);padding:4rem 2rem 2rem}
+.footer-inner{max-width:1280px;margin:0 auto}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;margin-bottom:3rem}
+.footer-brand .logo{font-size:1.2rem;display:block;margin-bottom:1rem}
+.footer-brand p{font-size:.88rem;color:var(--text2);line-height:1.7;max-width:260px}
+.footer-col h4{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:1rem;color:var(--text);margin-bottom:1rem;text-transform:uppercase;letter-spacing:.5px}
+.footer-col ul{list-style:none}
+.footer-col ul li{margin-bottom:.5rem}
+.footer-col ul li a{color:var(--text2);text-decoration:none;font-size:.88rem;transition:color .3s}
+.footer-col ul li a:hover{color:var(--cyan)}
+.footer-bottom{border-top:1px solid var(--border);padding-top:1.5rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:gap}
+.footer-bottom p{font-size:.82rem;color:var(--text3)}
+
+/* CHATBOT */
+#chat-widget{position:fixed;bottom:2rem;right:2rem;z-index:9000}
+#chat-btn{width:62px;height:62px;border-radius:50%;background:linear-gradient(135deg,var(--cyan),var(--purple));
+  border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.7rem;
+  box-shadow:0 8px 30px rgba(0,229,255,0.4);transition:all .3s;animation:pulse 3s infinite}
+#chat-btn:hover{transform:scale(1.08)}
+#chat-box{position:absolute;bottom:80px;right:0;width:360px;background:var(--bg2);
+  border:1px solid var(--border2);border-radius:20px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,0.5);
+  display:none;animation:slideIn .3s ease;flex-direction:column;max-height:520px}
+#chat-box.open{display:flex}
+.chat-header{background:linear-gradient(135deg,rgba(0,229,255,0.15),rgba(108,99,255,0.15));
+  padding:1rem 1.25rem;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:.75rem}
+.chat-avatar{width:36px;height:36px;background:linear-gradient(135deg,var(--cyan),var(--purple));
+  border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
+.chat-name{font-weight:700;font-size:.92rem;color:var(--text)}
+.chat-status{font-size:.72rem;color:#4caf50;font-weight:600}
+.chat-close{margin-left:auto;background:none;border:none;color:var(--text2);font-size:1.2rem;cursor:pointer;transition:color .3s}
+.chat-close:hover{color:var(--text)}
+.chat-messages{flex:1;overflow-y:auto;padding:1rem;display:flex;flex-direction:column;gap:.75rem;min-height:200px;max-height:300px}
+.chat-messages::-webkit-scrollbar{width:3px}
+.chat-messages::-webkit-scrollbar-thumb{background:var(--border2)}
+.msg{max-width:85%;font-size:.88rem;line-height:1.6;padding:.7rem .9rem;border-radius:12px;animation:fadeUp .2s ease}
+.msg.bot{background:var(--glass2);border:1px solid var(--border);border-radius:12px 12px 12px 4px;color:var(--text);align-self:flex-start}
+.msg.user{background:linear-gradient(135deg,rgba(0,229,255,0.15),rgba(108,99,255,0.15));
+  border:1px solid rgba(0,229,255,0.2);border-radius:12px 12px 4px 12px;color:var(--text);align-self:flex-end}
+.chat-suggestions{display:flex;flex-wrap:wrap;gap:.4rem;padding:.5rem 1rem;border-top:1px solid var(--border)}
+.suggest-chip{background:rgba(0,229,255,0.08);border:1px solid var(--border);border-radius:20px;
+  padding:.3rem .7rem;font-size:.72rem;color:var(--cyan);cursor:pointer;font-family:'Nunito',sans-serif;transition:all .2s}
+.suggest-chip:hover{background:rgba(0,229,255,0.15);border-color:var(--cyan)}
+.chat-input-row{display:flex;align-items:center;gap:.5rem;padding:.75rem 1rem;border-top:1px solid var(--border)}
+#chat-input{flex:1;background:var(--bg3);border:1px solid var(--border);border-radius:10px;
+  padding:.55rem .9rem;color:var(--text);font-family:'Nunito',sans-serif;font-size:.88rem;outline:none}
+#chat-input:focus{border-color:var(--border2)}
+#chat-send{width:36px;height:36px;border-radius:9px;background:linear-gradient(135deg,var(--cyan),var(--purple));
+  border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1rem;transition:transform .2s}
+#chat-send:hover{transform:scale(1.08)}
+.typing{display:flex;gap:4px;align-items:center;padding:.7rem .9rem}
+.typing span{width:7px;height:7px;background:var(--text3);border-radius:50%;animation:bounce .8s infinite}
+.typing span:nth-child(2){animation-delay:.15s}
+.typing span:nth-child(3){animation-delay:.3s}
+@keyframes bounce{0%,100%{transform:translateY(0);opacity:.4}50%{transform:translateY(-5px);opacity:1}}
+
+/* MODAL */
+.modal-overlay{position:fixed;inset:0;background:rgba(7,13,26,0.85);backdrop-filter:blur(8px);
+  z-index:9999;display:none;align-items:center;justify-content:center;padding:1rem}
+.modal-overlay.open{display:flex;animation:fadeUp .3s ease}
+.modal{background:var(--bg2);border:1px solid var(--border2);border-radius:24px;width:100%;max-width:460px;overflow:hidden}
+.modal-header{padding:2rem 2rem 0;text-align:center}
+.modal-logo{font-family:'Orbitron',monospace;font-weight:900;font-size:1.3rem;
+  background:linear-gradient(90deg,var(--cyan),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:.5rem}
+.modal-title{font-family:'Rajdhani',sans-serif;font-size:1.6rem;font-weight:700;color:var(--text);margin-bottom:.25rem}
+.modal-sub{font-size:.88rem;color:var(--text2)}
+.modal-tabs{display:flex;border-bottom:1px solid var(--border);margin-top:1.5rem}
+.modal-tab{flex:1;padding:.75rem;font-size:.9rem;font-weight:700;color:var(--text2);
+  cursor:pointer;transition:all .3s;border:none;background:none;font-family:'Nunito',sans-serif}
+.modal-tab.active{color:var(--cyan);border-bottom:2px solid var(--cyan)}
+.modal-body{padding:1.75rem 2rem 2rem}
+.auth-form{display:none}
+.auth-form.active{display:block}
+.auth-form .form-group{margin-bottom:1rem}
+.otp-row{display:flex;gap:.5rem}
+.otp-row .form-control{flex:1}
+.otp-row .btn{flex-shrink:0;padding:.75rem 1rem;font-size:.82rem}
+.divider{text-align:center;color:var(--text3);font-size:.82rem;margin:1rem 0;position:relative}
+.divider::before,.divider::after{content:'';position:absolute;top:50%;width:40%;height:1px;background:var(--border)}
+.divider::before{left:0}
+.divider::after{right:0}
+.social-auth{display:flex;gap:.75rem}
+.social-auth-btn{flex:1;padding:.65rem;border-radius:10px;background:var(--glass);border:1px solid var(--border);
+  color:var(--text2);font-size:.85rem;font-weight:700;cursor:pointer;transition:all .3s;font-family:'Nunito',sans-serif;display:flex;align-items:center;justify-content:center;gap:.5rem}
+.social-auth-btn:hover{background:var(--glass2);border-color:var(--border2)}
+.forgot-link{font-size:.82rem;color:var(--cyan);cursor:pointer;text-align:right;display:block;margin-top:.3rem}
+.modal-close{position:absolute;top:1rem;right:1rem;background:none;border:none;color:var(--text2);
+  font-size:1.5rem;cursor:pointer;width:36px;height:36px;display:flex;align-items:center;justify-content:center;
+  border-radius:8px;transition:all .3s}
+.modal-close:hover{background:var(--glass2);color:var(--text)}
+.modal{position:relative}
+
+/* PAYMENT SECTION */
+#payment{background:var(--bg)}
+.payment-methods{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1rem;margin-top:2rem}
+.pay-card{background:var(--glass);border:1px solid var(--border);border-radius:14px;padding:1.25rem;
+  text-align:center;transition:all .3s;cursor:pointer}
+.pay-card:hover{border-color:var(--border2);background:var(--glass2)}
+.pay-icon{font-size:2rem;margin-bottom:.5rem}
+.pay-name{font-size:.85rem;font-weight:700;color:var(--text);margin-bottom:.2rem}
+.pay-note{font-size:.72rem;color:var(--text2)}
+
+/* INTEGRATIONS */
+#integrations{background:var(--bg2)}
+.int-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.5rem}
+.int-card{background:var(--glass);border:1px solid var(--border);border-radius:16px;padding:1.75rem;text-align:center;transition:all .3s}
+.int-card:hover{border-color:var(--border2);transform:translateY(-3px)}
+.int-logo{font-size:2.5rem;margin-bottom:.75rem}
+.int-name{font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--text);margin-bottom:.3rem}
+.int-desc{font-size:.83rem;color:var(--text2);line-height:1.5}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  .hero-content,.why-grid,.contact-grid{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr 1fr}
+  .hero-visual{display:none}
+  .nav-links{display:none}
+  .hamburger{display:flex}
+  .mobile-menu{display:none;position:absolute;top:70px;left:0;width:100%;background:var(--bg2);
+    border-bottom:1px solid var(--border);padding:1rem 2rem;flex-direction:column;gap:1rem}
+  .mobile-menu.open{display:flex}
+  .mobile-menu a{color:var(--text2);text-decoration:none;font-weight:600;font-size:.95rem;padding:.5rem 0;border-bottom:1px solid var(--border)}
+  #chat-box{width:calc(100vw - 4rem);right:0}
+}
+@media(max-width:480px){
+  .footer-grid{grid-template-columns:1fr}
+  .pricing-toggle{margin-left:0}
+}
+.notif{position:fixed;top:90px;right:2rem;background:rgba(0,229,255,0.12);border:1px solid var(--cyan);
+  border-radius:12px;padding:.8rem 1.2rem;color:var(--cyan);font-size:.88rem;font-weight:700;
+  z-index:8000;animation:slideIn .3s ease;display:none}
+.notif.show{display:block}
+</style>
+</head>
+<body>
+
+<!-- NOTIFICATION -->
+<div class="notif" id="notif"></div>
+
+<!-- NAVIGATION -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <div class="logo">ZES<span>.</span>SOLUTIONS</div>
+    <ul class="nav-links">
+      <li><a href="#hero">Home</a></li>
+      <li><a href="#products">Products</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+      <li><a href="#integrations">Integrations</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="nav-cta">
+      <button class="btn btn-outline" onclick="openModal('login')">Login</button>
+      <button class="btn btn-primary" onclick="openModal('signup')">Get Started</button>
+    </div>
+    <div class="hamburger" onclick="toggleMenu()" id="hamburger">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="#hero" onclick="toggleMenu()">Home</a>
+    <a href="#products" onclick="toggleMenu()">Products</a>
+    <a href="#services" onclick="toggleMenu()">Services</a>
+    <a href="#pricing" onclick="toggleMenu()">Pricing</a>
+    <a href="#integrations" onclick="toggleMenu()">Integrations</a>
+    <a href="#contact" onclick="toggleMenu()">Contact</a>
+    <div style="display:flex;gap:.5rem;margin-top:.5rem">
+      <button class="btn btn-outline" onclick="openModal('login');toggleMenu()">Login</button>
+      <button class="btn btn-primary" onclick="openModal('signup');toggleMenu()">Get Started</button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="glow-blob blob1"></div>
+  <div class="glow-blob blob2"></div>
+  <div class="hero-content">
+    <div>
+      <div class="hero-tag">🚀 India's #1 Digital Automation Agency</div>
+      <h1 class="hero-title">
+        <span class="line1">Automate. Grow.</span><br/>
+        <span class="line2">Dominate Digital.</span><br/>
+        <span class="line3">With Zes Solutions.</span>
+      </h1>
+      <p class="hero-desc">From WhatsApp automation to full-scale digital marketing — we power brands with cutting-edge automation tools, AI-driven campaigns, and custom software that converts.</p>
+      <div class="hero-btns">
+        <a href="#products" class="btn btn-primary">Explore Products</a>
+        <a href="#contact" class="btn btn-outline">Talk to Us</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><div class="stat-num">500+</div><div class="stat-label">Clients Served</div></div>
+        <div class="stat"><div class="stat-num">98%</div><div class="stat-label">Success Rate</div></div>
+        <div class="stat"><div class="stat-num">50M+</div><div class="stat-label">Messages Sent</div></div>
+        <div class="stat"><div class="stat-num">4.9★</div><div class="stat-label">Client Rating</div></div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="orbit-wrap">
+        <div class="orbit-ring ring1"></div>
+        <div class="orbit-ring ring2"></div>
+        <div class="orbit-center">ZES</div>
+        <div class="orbit-icon o1">📱</div>
+        <div class="orbit-icon o2">📊</div>
+        <div class="orbit-icon o3">🤖</div>
+        <div class="orbit-icon o4">💬</div>
+        <div class="orbit-icon o5">📸</div>
+        <div class="orbit-icon o6">🎯</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section id="products" class="section">
+  <div class="section-inner">
+    <div class="section-head">
+      <div class="section-label">Our Products</div>
+      <h2 class="section-title">Powerful Automation Tools</h2>
+      <p class="section-desc">Ready-to-deploy automation platforms that save time, boost engagement, and grow your business on autopilot.</p>
+    </div>
+    <div class="cards-grid">
+      <!-- WhatsApp -->
+      <div class="product-card">
+        <div class="product-header">
+          <div>
+            <div class="card-icon icon-green" style="font-size:1.8rem">💬</div>
+            <h3 style="font-family:'Rajdhani',sans-serif;font-size:1.3rem;font-weight:700;color:var(--text);margin-top:.5rem">WhatsApp Automation</h3>
+          </div>
+          <span class="product-badge badge-hot">🔥 HOT</span>
+        </div>
+        <div class="product-body">
+          <p style="color:var(--text2);font-size:.9rem;line-height:1.7">Full-stack WhatsApp marketing suite — bulk messaging, chatbots, CRM integration, autoresponders, and campaign analytics.</p>
+          <ul class="product-features">
+            <li>Bulk broadcast messaging (10,000+/day)</li>
+            <li>AI-powered chatbot with NLP</li>
+            <li>Auto-reply & drip campaigns</li>
+            <li>Contact list management & segmentation</li>
+            <li>Rich media: images, video, catalogs</li>
+            <li>Analytics & open-rate tracking</li>
+            <li>WhatsApp Business API integration</li>
+          </ul>
+          <div style="display:flex;flex-wrap:wrap;gap:.4rem">
+            <span class="tag tag-cyan">WhatsApp API</span>
+            <span class="tag tag-cyan">Automation</span>
+            <span class="tag tag-cyan">CRM</span>
+          </div>
+        </div>
+        <div class="product-footer">
+          <div class="card-price" style="border:none;padding:0" id="wa-price">Starting ₹2,999/mo</div>
+          <button class="btn btn-primary" onclick="openModal('signup')" style="font-size:.82rem;padding:.5rem 1rem">Get Started</button>
+        </div>
+      </div>
+      <!-- Instagram -->
+      <div class="product-card">
+        <div class="product-header">
+          <div>
+            <div class="card-icon icon-pink" style="font-size:1.8rem">📸</div>
+            <h3 style="font-family:'Rajdhani',sans-serif;font-size:1.3rem;font-weight:700;color:var(--text);margin-top:.5rem">Instagram Automation</h3>
+          </div>
+          <span class="product-badge badge-new">✨ NEW</span>
+        </div>
+        <div class="product-body">
+          <p style="color:var(--text2);font-size:.9rem;line-height:1.7">Automate Instagram DMs, comments, story interactions, and follower engagement to grow your brand 24/7.</p>
+          <ul class="product-features">
+            <li>Auto-DM campaigns & sequences</li>
+            <li>Comment auto-response system</li>
+            <li>Story interaction automation</li>
+            <li>Hashtag targeting & lead capture</li>
+            <li>Competitor follower targeting</li>
+            <li>Post scheduling & analytics</li>
+            <li>Instagram Shopping integration</li>
+          </ul>
+          <div style="display:flex;flex-wrap:wrap;gap:.4rem">
+            <span class="tag tag-purple">Instagram</span>
+            <span class="tag tag-purple">Growth</span>
+            <span class="tag tag-purple">DM Bot</span>
+          </div>
+        </div>
+        <div class="product-footer">
+          <div id="ig-price" style="font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--purple)">Starting ₹1,999/mo</div>
+          <button class="btn btn-purple" onclick="openModal('signup')" style="font-size:.82rem;padding:.5rem 1rem">Get Started</button>
+        </div>
+      </div>
+      <!-- Facebook -->
+      <div class="product-card">
+        <div class="product-header">
+          <div>
+            <div class="card-icon icon-cyan" style="font-size:1.8rem">👥</div>
+            <h3 style="font-family:'Rajdhani',sans-serif;font-size:1.3rem;font-weight:700;color:var(--text);margin-top:.5rem">Facebook Automation</h3>
+          </div>
+          <span class="product-badge badge-popular">⭐ POPULAR</span>
+        </div>
+        <div class="product-body">
+          <p style="color:var(--text2);font-size:.9rem;line-height:1.7">Supercharge your Facebook presence with automated posts, Messenger bots, group management, and ad retargeting.</p>
+          <ul class="product-features">
+            <li>Messenger chatbot & auto-replies</li>
+            <li>Post scheduling & auto-publishing</li>
+            <li>Group management automation</li>
+            <li>Lead ad integration & follow-up</li>
+            <li>Comment moderation & auto-like</li>
+            <li>Page insights & reporting</li>
+            <li>Custom audience builder</li>
+          </ul>
+          <div style="display:flex;flex-wrap:wrap;gap:.4rem">
+            <span class="tag tag-cyan">Facebook</span>
+            <span class="tag tag-cyan">Messenger</span>
+            <span class="tag tag-orange">Ads</span>
+          </div>
+        </div>
+        <div class="product-footer">
+          <div id="fb-price" style="font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--cyan)">Starting ₹1,499/mo</div>
+          <button class="btn btn-primary" onclick="openModal('signup')" style="font-size:.82rem;padding:.5rem 1rem">Get Started</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services" class="section">
+  <div class="section-inner">
+    <div class="section-head">
+      <div class="section-label">Our Services</div>
+      <h2 class="section-title">End-to-End Digital Solutions</h2>
+      <p class="section-desc">Comprehensive services covering every dimension of your digital growth journey.</p>
+    </div>
+    <div class="services-tabs">
+      <button class="tab-btn active" onclick="switchTab('marketing')">📢 Digital Marketing</button>
+      <button class="tab-btn" onclick="switchTab('ads')">🎯 Advertising</button>
+      <button class="tab-btn" onclick="switchTab('web')">🌐 Web & Apps</button>
+      <button class="tab-btn" onclick="switchTab('content')">🎬 Content & UGC</button>
+    </div>
+    <!-- Marketing Tab -->
+    <div class="tab-content active" id="tab-marketing">
+      <div class="card">
+        <div class="card-icon icon-cyan">📢</div>
+        <h3>Social Media Marketing</h3>
+        <p>Complete social media management across WhatsApp, Instagram, Facebook, LinkedIn — content creation, posting, engagement, and growth strategy.</p>
+        <div class="card-tags"><span class="tag tag-cyan">WhatsApp</span><span class="tag tag-cyan">Instagram</span><span class="tag tag-cyan">Facebook</span></div>
+        <div class="card-price" id="smm-price">From ₹8,999/mo</div>
+      </div>
+      <div class="card">
+        <div class="card-icon icon-purple">📊</div>
+        <h3>Brand Strategy & Digital PR</h3>
+        <p>Build a compelling brand identity online. Online reputation management, influencer outreach, viral content strategy, and digital PR campaigns.</p>
+        <div class="card-tags"><span class="tag tag-purple">Branding</span><span class="tag tag-purple">PR</span><span class="tag tag-purple">Influencer</span></div>
+        <div class="card-price" id="brand-price">From ₹15,000/project</div>
+      </div>
+      <div class="card">
+        <div class="card-icon icon-orange">📧</div>
+        <h3>Email & WhatsApp Campaigns</h3>
+        <p>Design and execute high-converting email and WhatsApp marketing campaigns with A/B testing, segmentation, and detailed analytics.</p>
+        <div class="card-tags"><span class="tag tag-orange">Email</span><span class="tag tag-orange">WhatsApp</span><span class="tag tag-orange">Campaigns</span></div>
+        <div class="card-price" id="email-price">From ₹4,999/mo</div>
+      </div>
+    </div>
+    <!-- Ads Tab -->
+    <div class="tab-content" id="tab-ads">
+      <div class="card">
+        <div class="card-icon icon-cyan">📘</div>
+        <h3>Meta Ads (Facebook & Instagram)</h3>
+        <p>Expert Meta advertising — audience targeting, creative design, campaign optimization, retargeting, and ROAS-focused performance management.</p>
+        <div class="card-tags"><span class="tag tag-cyan">Meta</span><span class="tag tag-cyan">Facebook</span><span class="tag tag-cyan">Instagram</span></div>
+        <div class="card-price" id="meta-price">From ₹12,000/mo</div>
+      </div>
+      <div class="card">
+        <div class="card-icon icon-orange">🔍</div>
+        <h3>Google Ads & PPC</h3>
+        <p>Search, Display, Shopping, and YouTube ad campaigns managed by certified Google Ads specialists for maximum ROI and lead generation.</p>
+        <div class="card-tags"><span class="tag tag-orange">Google</span><span class="tag tag-orange">PPC</span><span class="tag tag-orange">YouTube</span></div>
+        <div class="card-price" id="google-price">From ₹10,000/mo</div>
+      </div>
+      <div class="card">
+        <div class="card-icon icon-green">🔎</div>
+        <h3>SEO Optimization</h3>
+        <p>Comprehensive SEO services — technical audit, on-page optimization, link building, local SEO, and content strategy to dominate search rankings.</p>
+        <div class="card-tags"><span class="tag tag-cyan">On-Page</span><span class="tag tag-cyan">Technical</span><span class="tag tag-cyan">Link Building</span></div>
+        <div class="card-price" id="seo-price">From ₹7,999/mo</div>
+      </div>
+    </div>
+    <!-- Web Tab -->
+    <div class="tab-content" id="tab-web">
+      <div class="card">
+        <div class="card-icon icon-cyan">🌐</div>
+        <h3>Website Development</h3>
+        <p>Stunning, responsive websites — landing pages, corporate sites, portfolios, and custom web apps built with modern frameworks for speed and SEO.</p>
+        <div class="card-tags"><span class="tag tag-cyan">React</span><span class="tag tag-cyan">WordPress</span><span class="tag tag-cyan">Custom</span></div>
+        <div class="card-price" id="web-price">From ₹15,000/project</div>
+      </div>
+      <div class="card">
+        <div class="card-icon icon-purple">🛒</div>
+        <h3>E-Commerce Development</h3>
+        <p>Full-featured online stores with payment gateways, inventory management, product catalogs, and conversion optimization for maximum sales.</p>
+        <div class="card-tags"><span class="tag tag-purple">Shopify</span><span class="tag tag-purple">WooCommerce</span><span class="tag tag-purple">Custom</span></div>
+        <div class="card-price" id="ecom-price">From ₹25,000/project</div>
+      </div>
+      <div class="card">
+        <div class="card-icon icon-orange">📱</div>
+        <h3>App & Software Development</h3>
+        <p>Native and cross-platform mobile apps, SaaS platforms, enterprise software, and digital product development from concept to deployment.</p>
+        <div class="card-tags"><span class="tag tag-orange">iOS</span><span class="tag tag-orange">Android</span><span class="tag tag-orange">SaaS</span></div>
+        <div class="card-price" id="app-price">From ₹50,000/project</div>
+      </div>
+    </div>
+    <!-- Content Tab -->
+    <div class="tab-content" id="tab-content">
+      <div class="card">
+        <div class="card-icon icon-pink">🎬</div>
+        <h3>UGC Content Creation</h3>
+        <p>Authentic user-generated content campaigns — UGC ads, testimonial videos, unboxing content, and creator partnerships for social proof.</p>
+        <div class="card-tags"><span class="tag tag-purple">UGC</span><span class="tag tag-purple">Video</span><span class="tag tag-purple">Creators</span></div>
+        <div class="card-price" id="ugc-price">From ₹5,000/campaign</div>
+      </div>
+      <div class="card">
+        <div class="card-icon icon-orange">✍️</div>
+        <h3>Content Marketing & Copywriting</h3>
+        <p>SEO-optimized blog posts, ad copy, email sequences, social captions, product descriptions, and compelling brand storytelling.</p>
+        <div class="card-tags"><span class="tag tag-orange">Blogs</span><span class="tag tag-orange">Ad Copy</span><span class="tag tag-orange">SEO</span></div>
+        <div class="card-price" id="copy-price">From ₹3,000/mo</div>
+      </div>
+      <div class="card">
+        <div class="card-icon icon-cyan">🎨</div>
+        <h3>Creative Design & Reels</h3>
+        <p>Professional graphic design, social media templates, animated reels, short-form video production, and complete brand identity design.</p>
+        <div class="card-tags"><span class="tag tag-cyan">Design</span><span class="tag tag-cyan">Reels</span><span class="tag tag-cyan">Video</span></div>
+        <div class="card-price" id="design-price">From ₹4,500/mo</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing" class="section">
+  <div class="section-inner">
+    <div class="section-head">
+      <div class="section-label">Transparent Pricing</div>
+      <h2 class="section-title">Plans for Every Business</h2>
+      <p class="section-desc">Flexible pricing designed for startups, growing businesses, and enterprises.</p>
+    </div>
+    <div class="currency-bar">
+      <label>💱 Currency:</label>
+      <select class="currency-select" id="currency-select" onchange="changeCurrency()">
+        <option value="INR">🇮🇳 INR – Indian Rupee</option>
+        <option value="USD">🇺🇸 USD – US Dollar</option>
+        <option value="EUR">🇪🇺 EUR – Euro</option>
+        <option value="GBP">🇬🇧 GBP – British Pound</option>
+        <option value="AED">🇦🇪 AED – UAE Dirham</option>
+        <option value="SGD">🇸🇬 SGD – Singapore Dollar</option>
+        <option value="AUD">🇦🇺 AUD – Australian Dollar</option>
+        <option value="CAD">🇨🇦 CAD – Canadian Dollar</option>
+      </select>
+      <span class="currency-info" id="rate-info">1 USD = ₹84.50 (live rates)</span>
+      <div class="pricing-toggle">
+        <span class="toggle-label">Monthly</span>
+        <label class="toggle"><input type="checkbox" id="billing-toggle" onchange="updatePricing()"><span class="slider-toggle"></span></label>
+        <span class="toggle-label">Annual <span style="color:var(--cyan);font-weight:800">20% OFF</span></span>
+      </div>
+    </div>
+    <h3 style="font-family:'Rajdhani',sans-serif;font-size:1.4rem;font-weight:700;color:var(--text2);margin-bottom:1.5rem">⚡ Automation Plans</h3>
+    <div class="pricing-grid">
+      <div class="pricing-card">
+        <div class="plan-name">Starter</div>
+        <div class="plan-desc">For solopreneurs & small businesses</div>
+        <div class="plan-price"><span class="price-amount" id="p-starter">₹2,999</span><span class="price-period">/mo</span></div>
+        <ul class="plan-features">
+          <li><span class="ck">✓</span>WhatsApp Automation (5,000 msgs/mo)</li>
+          <li><span class="ck">✓</span>Instagram Auto-DM (1,000/mo)</li>
+          <li><span class="ck">✓</span>1 Chatbot flow</li>
+          <li><span class="ck">✓</span>Basic analytics</li>
+          <li><span class="ck">✓</span>Email support</li>
+          <li class="no"><span class="ck">✕</span>Facebook Automation</li>
+          <li class="no"><span class="ck">✕</span>API access</li>
+        </ul>
+        <button class="btn btn-outline" style="width:100%" onclick="openModal('signup')">Get Starter</button>
+      </div>
+      <div class="pricing-card featured">
+        <div class="plan-name">Growth</div>
+        <div class="plan-desc">Best for scaling businesses</div>
+        <div class="plan-price"><span class="price-amount" id="p-growth">₹7,999</span><span class="price-period">/mo</span></div>
+        <ul class="plan-features">
+          <li><span class="ck">✓</span>WhatsApp Automation (25,000 msgs/mo)</li>
+          <li><span class="ck">✓</span>Instagram + Facebook Automation</li>
+          <li><span class="ck">✓</span>Unlimited chatbot flows</li>
+          <li><span class="ck">✓</span>Advanced analytics & reports</li>
+          <li><span class="ck">✓</span>CRM integration</li>
+          <li><span class="ck">✓</span>Priority support (WhatsApp + Email)</li>
+          <li><span class="ck">✓</span>API access</li>
+        </ul>
+        <button class="btn btn-primary" style="width:100%" onclick="openModal('signup')">Get Growth</button>
+      </div>
+      <div class="pricing-card">
+        <div class="plan-name">Enterprise</div>
+        <div class="plan-desc">For large-scale operations</div>
+        <div class="plan-price"><span class="price-amount" id="p-enterprise">₹19,999</span><span class="price-period">/mo</span></div>
+        <ul class="plan-features">
+          <li><span class="ck">✓</span>Unlimited messaging (all platforms)</li>
+          <li><span class="ck">✓</span>Custom AI chatbot development</li>
+          <li><span class="ck">✓</span>White-label solution</li>
+          <li><span class="ck">✓</span>Dedicated account manager</li>
+          <li><span class="ck">✓</span>Custom integrations</li>
+          <li><span class="ck">✓</span>24/7 phone support</li>
+          <li><span class="ck">✓</span>SLA guarantee</li>
+        </ul>
+        <button class="btn btn-purple" style="width:100%" onclick="openModal('signup')">Get Enterprise</button>
+      </div>
+    </div>
+    <div class="section-sep"></div>
+    <h3 style="font-family:'Rajdhani',sans-serif;font-size:1.4rem;font-weight:700;color:var(--text2);margin-bottom:1.5rem">🎯 Marketing Service Plans</h3>
+    <div class="pricing-grid">
+      <div class="pricing-card">
+        <div class="plan-name">Basic Marketing</div>
+        <div class="plan-desc">Get your brand noticed online</div>
+        <div class="plan-price"><span class="price-amount" id="p-mkt1">₹9,999</span><span class="price-period">/mo</span></div>
+        <ul class="plan-features">
+          <li><span class="ck">✓</span>Social media management (2 platforms)</li>
+          <li><span class="ck">✓</span>12 posts per month</li>
+          <li><span class="ck">✓</span>Basic SEO setup</li>
+          <li><span class="ck">✓</span>Monthly performance report</li>
+          <li class="no"><span class="ck">✕</span>Paid ads management</li>
+          <li class="no"><span class="ck">✕</span>Content creation</li>
+        </ul>
+        <button class="btn btn-outline" style="width:100%" onclick="openModal('signup')">Get Basic</button>
+      </div>
+      <div class="pricing-card featured">
+        <div class="plan-name">Pro Marketing</div>
+        <div class="plan-desc">Full-scale digital presence</div>
+        <div class="plan-price"><span class="price-amount" id="p-mkt2">₹24,999</span><span class="price-period">/mo</span></div>
+        <ul class="plan-features">
+          <li><span class="ck">✓</span>All platforms management</li>
+          <li><span class="ck">✓</span>30 posts + 8 reels/month</li>
+          <li><span class="ck">✓</span>Meta & Google Ads (up to ₹1L ad spend)</li>
+          <li><span class="ck">✓</span>Full SEO optimization</li>
+          <li><span class="ck">✓</span>UGC content (2 videos/mo)</li>
+          <li><span class="ck">✓</span>Dedicated strategist</li>
+        </ul>
+        <button class="btn btn-primary" style="width:100%" onclick="openModal('signup')">Get Pro</button>
+      </div>
+      <div class="pricing-card">
+        <div class="plan-name">360° Growth</div>
+        <div class="plan-desc">Everything, fully managed</div>
+        <div class="plan-price"><span class="price-amount" id="p-mkt3">₹59,999</span><span class="price-period">/mo</span></div>
+        <ul class="plan-features">
+          <li><span class="ck">✓</span>Full automation suite included</li>
+          <li><span class="ck">✓</span>Unlimited content creation</li>
+          <li><span class="ck">✓</span>All ad platforms (unlimited spend)</li>
+          <li><span class="ck">✓</span>Website maintenance & updates</li>
+          <li><span class="ck">✓</span>Weekly strategy calls</li>
+          <li><span class="ck">✓</span>Guaranteed results or money back</li>
+        </ul>
+        <button class="btn btn-orange" style="width:100%" onclick="openModal('signup')">Get 360° Growth</button>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:2.5rem;padding:1.5rem;background:var(--glass);border:1px solid var(--border);border-radius:16px">
+      <p style="color:var(--text2);font-size:.9rem">💡 Need a custom quote for your website, app, or software project? <a href="#contact" style="color:var(--cyan);font-weight:700">Contact our team</a> for a tailored proposal.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PAYMENT METHODS -->
+<section id="payment" class="section" style="padding-top:3rem">
+  <div class="section-inner">
+    <div class="section-head">
+      <div class="section-label">Payments</div>
+      <h2 class="section-title">Flexible Payment Options</h2>
+      <p class="section-desc">Pay securely using your preferred method — Indian and international options available.</p>
+    </div>
+    <div class="payment-methods">
+      <div class="pay-card"><div class="pay-icon">💳</div><div class="pay-name">Razorpay</div><div class="pay-note">Cards, UPI, NetBanking</div></div>
+      <div class="pay-card"><div class="pay-icon">📲</div><div class="pay-name">UPI / PhonePe</div><div class="pay-note">Instant transfers</div></div>
+      <div class="pay-card"><div class="pay-icon">🏦</div><div class="pay-name">Net Banking</div><div class="pay-note">All major banks</div></div>
+      <div class="pay-card"><div class="pay-icon">🅿️</div><div class="pay-name">PayPal</div><div class="pay-note">International</div></div>
+      <div class="pay-card"><div class="pay-icon">💵</div><div class="pay-name">Stripe</div><div class="pay-note">Global cards</div></div>
+      <div class="pay-card"><div class="pay-icon">₿</div><div class="pay-name">Crypto</div><div class="pay-note">USDT, BTC, ETH</div></div>
+      <div class="pay-card"><div class="pay-icon">🏧</div><div class="pay-name">Bank Transfer</div><div class="pay-note">NEFT / RTGS / IMPS</div></div>
+      <div class="pay-card"><div class="pay-icon">💰</div><div class="pay-name">EMI Options</div><div class="pay-note">0% for 3–12 months</div></div>
+    </div>
+    <p style="margin-top:1.5rem;font-size:.82rem;color:var(--text3);text-align:center">🔒 All transactions secured with 256-bit SSL encryption. GST invoice provided for all Indian payments.</p>
+  </div>
+</section>
+
+<!-- INTEGRATIONS -->
+<section id="integrations" class="section">
+  <div class="section-inner">
+    <div class="section-head">
+      <div class="section-label">Platform Integrations</div>
+      <h2 class="section-title">Connect Everything You Use</h2>
+      <p class="section-desc">Zes Solutions integrates with all major platforms to give you a unified automation hub.</p>
+    </div>
+    <div class="int-grid">
+      <div class="int-card">
+        <div class="int-logo">💬</div>
+        <div class="int-name">WhatsApp Business</div>
+        <div class="int-desc">Official WhatsApp Business API integration with full messaging capabilities and automation.</div>
+      </div>
+      <div class="int-card">
+        <div class="int-logo">📸</div>
+        <div class="int-name">Instagram</div>
+        <div class="int-desc">Connect your Instagram account for DM automation, story interactions, and comment management.</div>
+      </div>
+      <div class="int-card">
+        <div class="int-logo">👥</div>
+        <div class="int-name">Facebook / Meta</div>
+        <div class="int-desc">Full Meta Business Suite integration — Messenger, pages, ads, and audience management.</div>
+      </div>
+      <div class="int-card">
+        <div class="int-logo">💼</div>
+        <div class="int-name">LinkedIn</div>
+        <div class="int-desc">Automate LinkedIn outreach, connection requests, message sequences, and lead generation.</div>
+      </div>
+      <div class="int-card">
+        <div class="int-logo">🔍</div>
+        <div class="int-name">Google Workspace</div>
+        <div class="int-desc">Sync with Google Ads, Analytics, Search Console, and Workspace tools for seamless workflow.</div>
+      </div>
+      <div class="int-card">
+        <div class="int-logo">🛒</div>
+        <div class="int-name">Shopify / WooCommerce</div>
+        <div class="int-desc">E-commerce automation — abandoned cart recovery, order notifications, and customer re-engagement.</div>
+      </div>
+      <div class="int-card">
+        <div class="int-logo">📊</div>
+        <div class="int-name">CRM Systems</div>
+        <div class="int-desc">HubSpot, Zoho, Salesforce, and custom CRM integrations for end-to-end customer management.</div>
+      </div>
+      <div class="int-card">
+        <div class="int-logo">⚡</div>
+        <div class="int-name">Zapier / Make</div>
+        <div class="int-desc">Connect 1,000+ apps via Zapier or Make.com for limitless automation possibilities.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section id="why" class="section" style="background:var(--bg2)">
+  <div class="section-inner">
+    <div class="why-grid">
+      <div>
+        <div class="section-label">Why Zes Solutions</div>
+        <h2 class="section-title">We Deliver Results, Not Just Services</h2>
+        <ul class="why-list">
+          <li><div class="why-icon">🏆</div><div class="why-text"><h4>5+ Years of Expertise</h4><p>Deep domain knowledge across digital marketing, automation, and software development — delivering measurable outcomes.</p></div></li>
+          <li><div class="why-icon">⚡</div><div class="why-text"><h4>Fast Turnaround</h4><p>Agile delivery with rapid onboarding. Most automation setups go live within 48 hours of signing.</p></div></li>
+          <li><div class="why-icon">🔒</div><div class="why-text"><h4>Data Privacy & Security</h4><p>GDPR-compliant systems, end-to-end encrypted communications, and secure customer data handling at all times.</p></div></li>
+          <li><div class="why-icon">🤝</div><div class="why-text"><h4>Dedicated Support</h4><p>Your dedicated account manager is just a WhatsApp message away — 6 days a week, real humans, not bots.</p></div></li>
+          <li><div class="why-icon">📈</div><div class="why-text"><h4>ROI-Focused Approach</h4><p>Every campaign is tracked, measured, and optimized. Transparent reporting so you always know your returns.</p></div></li>
+        </ul>
+      </div>
+      <div class="why-visual">
+        <div class="metric-cards">
+          <div class="metric-card"><div class="num">500+</div><div class="lbl">Happy Clients</div></div>
+          <div class="metric-card"><div class="num">98%</div><div class="lbl">Retention Rate</div></div>
+          <div class="metric-card"><div class="num">50M+</div><div class="lbl">Msgs Automated</div></div>
+          <div class="metric-card"><div class="num">5★</div><div class="lbl">Avg Rating</div></div>
+          <div class="metric-card" style="grid-column:span 2"><div class="num" style="color:var(--orange)">₹10Cr+</div><div class="lbl">Ad Spend Managed</div></div>
+        </div>
+        <div style="margin-top:1.5rem;background:var(--glass);border:1px solid var(--border);border-radius:16px;padding:1.5rem">
+          <p style="font-size:.9rem;color:var(--text2);font-style:italic;line-height:1.7;">"Zes Solutions transformed our WhatsApp marketing completely. Our lead conversion rate jumped 3x within 2 months. Best investment we made for our business."</p>
+          <div style="display:flex;align-items:center;gap:.75rem;margin-top:1rem">
+            <div style="width:40px;height:40px;background:linear-gradient(135deg,var(--cyan),var(--purple));border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;color:#070d1a;font-size:.9rem">RK</div>
+            <div>
+              <div style="font-weight:700;font-size:.9rem;color:var(--text)">Rajesh Kumar</div>
+              <div style="font-size:.78rem;color:var(--text2)">CEO, TechRetail India</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="section">
+  <div class="section-inner">
+    <div class="section-head">
+      <div class="section-label">Get In Touch</div>
+      <h2 class="section-title">Let's Build Something Amazing</h2>
+      <p class="section-desc">Have a project in mind? Talk to our team and get a free consultation and quote within 24 hours.</p>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-form">
+        <h3 style="font-family:'Rajdhani',sans-serif;font-size:1.4rem;font-weight:700;margin-bottom:1.5rem;color:var(--text)">Send Us a Message</h3>
+        <div class="form-group">
+          <label>Full Name *</label>
+          <input type="text" class="form-control" placeholder="Your full name" id="c-name"/>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
+          <div class="form-group">
+            <label>Email *</label>
+            <input type="email" class="form-control" placeholder="your@email.com" id="c-email"/>
+          </div>
+          <div class="form-group">
+            <label>Phone</label>
+            <input type="tel" class="form-control" placeholder="+91 9999999999" id="c-phone"/>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Service Interested In *</label>
+          <select class="form-control" id="c-service">
+            <option value="">Select a service...</option>
+            <option>WhatsApp Automation</option>
+            <option>Instagram Automation</option>
+            <option>Facebook Automation</option>
+            <option>Digital Marketing</option>
+            <option>Meta Ads Management</option>
+            <option>Google Ads & SEO</option>
+            <option>UGC Content Creation</option>
+            <option>Website Development</option>
+            <option>E-Commerce Development</option>
+            <option>App / Software Development</option>
+            <option>Full 360° Package</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Your Message *</label>
+          <textarea class="form-control" placeholder="Tell us about your business and what you're looking to achieve..." id="c-msg"></textarea>
+        </div>
+        <button class="btn btn-primary" style="width:100%;padding:.85rem" onclick="submitContact()">Send Message 🚀</button>
+      </div>
+      <div class="contact-info">
+        <div class="contact-item">
+          <div class="ci-icon" style="background:rgba(37,211,102,0.1)">💬</div>
+          <div class="ci-text"><h4>WhatsApp</h4><p>+91 98XXX XXXXX — Chat with us instantly</p></div>
+        </div>
+        <div class="contact-item">
+          <div class="ci-icon" style="background:rgba(0,229,255,0.1)">📧</div>
+          <div class="ci-text"><h4>Email</h4><p>hello@zessolutions.in</p></div>
+        </div>
+        <div class="contact-item">
+          <div class="ci-icon" style="background:rgba(255,107,53,0.1)">📍</div>
+          <div class="ci-text"><h4>Location</h4><p>Chennai, Tamil Nadu, India 🇮🇳</p></div>
+        </div>
+        <div class="contact-item">
+          <div class="ci-icon" style="background:rgba(108,99,255,0.1)">⏰</div>
+          <div class="ci-text"><h4>Working Hours</h4><p>Mon–Sat: 9:00 AM – 7:00 PM IST</p></div>
+        </div>
+        <div>
+          <p style="font-size:.85rem;font-weight:700;color:var(--text2);margin-bottom:.75rem;text-transform:uppercase;letter-spacing:.5px">Connect on Social</p>
+          <div class="social-links">
+            <a href="https://wa.me/919800000000" target="_blank" class="social-btn sb-wa">💬 WhatsApp</a>
+            <a href="https://instagram.com/zessolutions" target="_blank" class="social-btn sb-ig">📸 Instagram</a>
+            <a href="https://linkedin.com/company/zessolutions" target="_blank" class="social-btn sb-li">💼 LinkedIn</a>
+            <a href="https://facebook.com/zessolutions" target="_blank" class="social-btn sb-fb">👥 Facebook</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo">ZES<span style="-webkit-text-fill-color:var(--orange)">.</span>SOLUTIONS</div>
+        <p>India's leading digital automation and marketing agency. Helping businesses automate, grow, and dominate their digital presence since 2020.</p>
+        <div style="margin-top:1rem;display:flex;gap:.5rem;flex-wrap:wrap">
+          <span style="font-size:.72rem;padding:.25rem .65rem;background:rgba(0,229,255,0.08);border:1px solid rgba(0,229,255,0.15);border-radius:20px;color:var(--text2)">🏆 ISO Certified</span>
+          <span style="font-size:.72rem;padding:.25rem .65rem;background:rgba(0,229,255,0.08);border:1px solid rgba(0,229,255,0.15);border-radius:20px;color:var(--text2)">🔒 GDPR Compliant</span>
+          <span style="font-size:.72rem;padding:.25rem .65rem;background:rgba(0,229,255,0.08);border:1px solid rgba(0,229,255,0.15);border-radius:20px;color:var(--text2)">✅ Meta Partner</span>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Products</h4>
+        <ul>
+          <li><a href="#products">WhatsApp Automation</a></li>
+          <li><a href="#products">Instagram Automation</a></li>
+          <li><a href="#products">Facebook Automation</a></li>
+          <li><a href="#integrations">LinkedIn Automation</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="#services">Digital Marketing</a></li>
+          <li><a href="#services">Meta & Google Ads</a></li>
+          <li><a href="#services">SEO Optimization</a></li>
+          <li><a href="#services">UGC Content</a></li>
+          <li><a href="#services">Web & App Dev</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#why">About Us</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms of Service</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Zes Solutions. All rights reserved. Made with ❤️ in Chennai, India.</p>
+      <p>GST: 33XXXXX1234Z1XX | CIN: U74999TN2020PTC123456</p>
+    </div>
+  </div>
+</footer>
+
+<!-- CHATBOT WIDGET -->
+<div id="chat-widget">
+  <div id="chat-box">
+    <div class="chat-header">
+      <div class="chat-avatar">🤖</div>
+      <div><div class="chat-name">Zes AI Assistant</div><div class="chat-status">● Online — Reply within seconds</div></div>
+      <button class="chat-close" onclick="toggleChat()">✕</button>
+    </div>
+    <div class="chat-messages" id="chat-messages">
+      <div class="msg bot">👋 Hi! I'm the Zes Solutions AI assistant. I can help you find the right automation tools, services, and plans for your business. What are you looking for today?</div>
+    </div>
+    <div class="chat-suggestions" id="chat-suggestions">
+      <span class="suggest-chip" onclick="sendSuggestion('Tell me about WhatsApp automation')">💬 WhatsApp Automation</span>
+      <span class="suggest-chip" onclick="sendSuggestion('What are your pricing plans?')">💰 Pricing</span>
+      <span class="suggest-chip" onclick="sendSuggestion('I need a website developed')">🌐 Website Dev</span>
+      <span class="suggest-chip" onclick="sendSuggestion('How can you help with digital marketing?')">📢 Marketing</span>
+    </div>
+    <div class="chat-input-row">
+      <input type="text" id="chat-input" placeholder="Ask anything about our services..." onkeydown="if(event.key==='Enter')sendMessage()"/>
+      <button id="chat-send" onclick="sendMessage()">➤</button>
+    </div>
+  </div>
+  <button id="chat-btn" onclick="toggleChat()" title="Chat with Zes AI">💬</button>
+</div>
+
+<!-- AUTH MODAL -->
+<div class="modal-overlay" id="auth-modal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="modal-header">
+      <div class="modal-logo">ZES.SOLUTIONS</div>
+      <div class="modal-title" id="modal-title">Welcome Back</div>
+      <div class="modal-sub" id="modal-sub">Sign in to your account</div>
+      <div class="modal-tabs">
+        <button class="modal-tab active" id="tab-login" onclick="switchAuthTab('login')">Login</button>
+        <button class="modal-tab" id="tab-register" onclick="switchAuthTab('signup')">Sign Up</button>
+      </div>
+    </div>
+    <div class="modal-body">
+      <!-- LOGIN FORM -->
+      <div class="auth-form active" id="form-login">
+        <div class="form-group">
+          <label>Email or Phone</label>
+          <input type="text" class="form-control" placeholder="email@example.com or +91 9999999999"/>
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" class="form-control" placeholder="Your password"/>
+          <span class="forgot-link" onclick="showForgot()">Forgot password?</span>
+        </div>
+        <button class="btn btn-primary" style="width:100%;padding:.85rem;margin-bottom:.75rem" onclick="fakeLogin()">Login to Account</button>
+        <div class="divider">or continue with</div>
+        <div class="social-auth">
+          <button class="social-auth-btn">📘 Facebook</button>
+          <button class="social-auth-btn">🔍 Google</button>
+        </div>
+      </div>
+      <!-- SIGNUP FORM -->
+      <div class="auth-form" id="form-signup">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:.75rem">
+          <div class="form-group"><label>First Name</label><input type="text" class="form-control" placeholder="First name"/></div>
+          <div class="form-group"><label>Last Name</label><input type="text" class="form-control" placeholder="Last name"/></div>
+        </div>
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" class="form-control" placeholder="your@email.com"/>
+        </div>
+        <div class="form-group">
+          <label>Phone Number</label>
+          <div class="otp-row">
+            <input type="tel" class="form-control" placeholder="+91 9999999999" id="signup-phone"/>
+            <button class="btn btn-outline" onclick="sendOTP('signup-phone')">Send OTP</button>
+          </div>
+        </div>
+        <div class="form-group" id="otp-verify-group" style="display:none">
+          <label>Enter OTP</label>
+          <div class="otp-row">
+            <input type="text" class="form-control" placeholder="6-digit OTP" id="otp-input" maxlength="6"/>
+            <button class="btn btn-outline" onclick="verifyOTP()">Verify</button>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" class="form-control" placeholder="Create a strong password"/>
+        </div>
+        <button class="btn btn-primary" style="width:100%;padding:.85rem;margin-bottom:.75rem" onclick="fakeSignup()">Create Account 🚀</button>
+        <div class="divider">or sign up with</div>
+        <div class="social-auth">
+          <button class="social-auth-btn">📘 Facebook</button>
+          <button class="social-auth-btn">🔍 Google</button>
+        </div>
+      </div>
+      <!-- FORGOT FORM -->
+      <div class="auth-form" id="form-forgot">
+        <p style="font-size:.88rem;color:var(--text2);margin-bottom:1.25rem;line-height:1.6">Choose how you'd like to receive your password reset:</p>
+        <div class="form-group">
+          <label>Email Address</label>
+          <div class="otp-row">
+            <input type="email" class="form-control" placeholder="your@email.com"/>
+            <button class="btn btn-outline" style="white-space:nowrap" onclick="showNotif('📧 Reset link sent to your email!')">Send Link</button>
+          </div>
+        </div>
+        <div style="text-align:center;color:var(--text3);margin:.5rem 0;font-size:.82rem">— OR —</div>
+        <div class="form-group">
+          <label>WhatsApp / Phone OTP</label>
+          <div class="otp-row">
+            <input type="tel" class="form-control" placeholder="+91 9999999999" id="forgot-phone"/>
+            <button class="btn btn-outline" onclick="sendOTP('forgot-phone')">Send OTP</button>
+          </div>
+        </div>
+        <button class="btn btn-outline" style="width:100%;margin-top:.5rem" onclick="switchAuthTab('login')">← Back to Login</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ====== EXCHANGE RATES (relative to INR) ======
+const rates={INR:1,USD:84.5,EUR:91.8,GBP:107.2,AED:23.0,SGD:63.5,AUD:55.2,CAD:62.8};
+const symbols={INR:'₹',USD:'$',EUR:'€',GBP:'£',AED:'AED ',SGD:'S$',AUD:'A$',CAD:'C$'};
+let currentCurrency='INR';
+let isAnnual=false;
+
+// Base prices in INR
+const basePrices={
+  starter:2999,growth:7999,enterprise:19999,
+  mkt1:9999,mkt2:24999,mkt3:59999
+};
+const serviceCards={
+  'smm-price':{base:8999,label:'From'},
+  'brand-price':{base:15000,label:'From'},
+  'email-price':{base:4999,label:'From'},
+  'meta-price':{base:12000,label:'From'},
+  'google-price':{base:10000,label:'From'},
+  'seo-price':{base:7999,label:'From'},
+  'web-price':{base:15000,label:'From',suffix:'/project'},
+  'ecom-price':{base:25000,label:'From',suffix:'/project'},
+  'app-price':{base:50000,label:'From',suffix:'/project'},
+  'ugc-price':{base:5000,label:'From',suffix:'/campaign'},
+  'copy-price':{base:3000,label:'From'},
+  'design-price':{base:4500,label:'From'},
+};
+
+function fmt(amountINR){
+  const rate=rates[currentCurrency];
+  const sym=symbols[currentCurrency];
+  const val=amountINR/rate;
+  if(val>=1000)return sym+Math.round(val).toLocaleString();
+  return sym+val.toFixed(0);
+}
+
+function changeCurrency(){
+  currentCurrency=document.getElementById('currency-select').value;
+  const rate=rates[currentCurrency];
+  const sym=symbols[currentCurrency];
+  document.getElementById('rate-info').textContent=
+    currentCurrency==='INR'?'Base currency':`1 ${currentCurrency} = ₹${rate.toFixed(2)} (approx)`;
+  updatePricing();
+}
+
+function updatePricing(){
+  isAnnual=document.getElementById('billing-toggle').checked;
+  const disc=isAnnual?0.8:1;
+  const suffix=isAnnual?'/yr':'/mo';
+  const apply=v=>isAnnual?Math.round(v*12*0.8):v;
+  const p=(id,base)=>{
+    const el=document.getElementById(id);
+    if(el)el.textContent=fmt(apply(base));
+  };
+  p('p-starter',basePrices.starter);
+  p('p-growth',basePrices.growth);
+  p('p-enterprise',basePrices.enterprise);
+  p('p-mkt1',basePrices.mkt1);
+  p('p-mkt2',basePrices.mkt2);
+  p('p-mkt3',basePrices.mkt3);
+  document.querySelectorAll('.price-period').forEach(el=>el.textContent=suffix);
+  // Product cards
+  const waEl=document.getElementById('wa-price');
+  if(waEl)waEl.textContent='Starting '+fmt(apply(2999))+(isAnnual?'/yr':'/mo');
+  const igEl=document.getElementById('ig-price');
+  if(igEl)igEl.textContent='Starting '+fmt(apply(1999))+(isAnnual?'/yr':'/mo');
+  const fbEl=document.getElementById('fb-price');
+  if(fbEl)fbEl.textContent='Starting '+fmt(apply(1499))+(isAnnual?'/yr':'/mo');
+  // Service cards
+  Object.entries(serviceCards).forEach(([id,{base,label,suffix:suf}])=>{
+    const el=document.getElementById(id);
+    if(!el)return;
+    const sfx=suf||(isAnnual?'/yr':'/mo');
+    el.textContent=label+' '+fmt(suf?base:apply(base))+sfx;
+  });
+}
+
+// ====== TABS ======
+function switchTab(name){
+  document.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('tab-'+name).classList.add('active');
+  event.target.classList.add('active');
+}
+
+// ====== MODAL ======
+function openModal(tab){
+  document.getElementById('auth-modal').classList.add('open');
+  switchAuthTab(tab);
+}
+function closeModal(){document.getElementById('auth-modal').classList.remove('open')}
+function switchAuthTab(tab){
+  document.querySelectorAll('.auth-form').forEach(f=>f.classList.remove('active'));
+  document.querySelectorAll('.modal-tab').forEach(t=>t.classList.remove('active'));
+  if(tab==='login'){
+    document.getElementById('form-login').classList.add('active');
+    document.getElementById('tab-login').classList.add('active');
+    document.getElementById('modal-title').textContent='Welcome Back';
+    document.getElementById('modal-sub').textContent='Sign in to your account';
+  }else if(tab==='signup'){
+    document.getElementById('form-signup').classList.add('active');
+    document.getElementById('tab-register').classList.add('active');
+    document.getElementById('modal-title').textContent='Create Account';
+    document.getElementById('modal-sub').textContent='Join 500+ businesses growing with Zes';
+  }
+}
+function showForgot(){
+  document.querySelectorAll('.auth-form').forEach(f=>f.classList.remove('active'));
+  document.getElementById('form-forgot').classList.add('active');
+  document.getElementById('modal-title').textContent='Reset Password';
+  document.getElementById('modal-sub').textContent='We\'ll help you get back in';
+}
+function sendOTP(inputId){
+  const val=document.getElementById(inputId).value;
+  if(!val){showNotif('⚠️ Please enter your phone number first');return}
+  showNotif('📱 OTP sent to '+val+' via WhatsApp & SMS!');
+  if(inputId==='signup-phone'){document.getElementById('otp-verify-group').style.display='block'}
+}
+function verifyOTP(){
+  const val=document.getElementById('otp-input').value;
+  if(val.length<4){showNotif('⚠️ Enter the 6-digit OTP');return}
+  showNotif('✅ Phone number verified successfully!');
+}
+function fakeLogin(){showNotif('✅ Logged in successfully! Redirecting...','success');setTimeout(closeModal,1200)}
+function fakeSignup(){showNotif('🎉 Account created! Check your email to verify.','success');setTimeout(closeModal,1500)}
+
+// ====== NOTIFICATIONS ======
+function showNotif(msg){
+  const n=document.getElementById('notif');
+  n.textContent=msg;n.classList.add('show');
+  setTimeout(()=>n.classList.remove('show'),3500);
+}
+
+// ====== CONTACT ======
+function submitContact(){
+  const name=document.getElementById('c-name').value;
+  const email=document.getElementById('c-email').value;
+  const msg=document.getElementById('c-msg').value;
+  if(!name||!email||!msg){showNotif('⚠️ Please fill all required fields');return}
+  showNotif('🚀 Message sent! We\'ll respond within 24 hours.');
+  ['c-name','c-email','c-phone','c-msg'].forEach(id=>{const el=document.getElementById(id);if(el)el.value=''});
+}
+
+// ====== MOBILE MENU ======
+function toggleMenu(){document.getElementById('mobile-menu').classList.toggle('open')}
+
+// ====== CHATBOT ======
+let chatOpen=false;
+const chatHistory=[];
+const SYSTEM_PROMPT=`You are the Zes Solutions AI Assistant — a helpful, friendly, and knowledgeable chatbot for Zes Solutions, a Chennai-based digital automation and marketing agency. 
+
+ABOUT ZES SOLUTIONS:
+- Products: WhatsApp Automation (₹2,999+/mo), Instagram Automation (₹1,999+/mo), Facebook Automation (₹1,499+/mo)
+- Digital Marketing: Social media management, Meta Ads, Google Ads, SEO optimization, UGC content creation
+- Development: Website development (₹15,000+), E-commerce (₹25,000+), App development (₹50,000+), Software development
+- Payment: Razorpay, UPI, PayPal, Stripe, Crypto, Bank Transfer, EMI options
+- Plans: Starter (₹2,999/mo), Growth (₹7,999/mo), Enterprise (₹19,999/mo)
+- Marketing Plans: Basic (₹9,999/mo), Pro (₹24,999/mo), 360° Growth (₹59,999/mo)
+- Location: Chennai, Tamil Nadu, India
+- Contact: hello@zessolutions.in
+- Integrations: WhatsApp, Instagram, Facebook, LinkedIn, Google, Shopify, CRM systems
+
+BEHAVIOR:
+- Be helpful, concise, and enthusiastic
+- Recommend specific products/services based on what the user needs
+- Mention pricing when relevant (support currency if user mentions one)
+- Encourage users to sign up or contact the team for custom quotes
+- Keep responses under 150 words unless a detailed explanation is genuinely needed
+- Use emojis naturally to keep the tone friendly`;
+
+function toggleChat(){
+  chatOpen=!chatOpen;
+  const box=document.getElementById('chat-box');
+  if(chatOpen){box.classList.add('open');document.getElementById('chat-input').focus()}
+  else{box.classList.remove('open')}
+}
+
+async function sendMessage(){
+  const input=document.getElementById('chat-input');
+  const text=input.value.trim();
+  if(!text)return;
+  input.value='';
+  appendMsg(text,'user');
+  document.getElementById('chat-suggestions').style.display='none';
+  chatHistory.push({role:'user',content:text});
+  const typing=appendTyping();
+  try{
+    const res=await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        model:'claude-sonnet-4-20250514',
+        max_tokens:300,
+        system:SYSTEM_PROMPT,
+        messages:chatHistory
+      })
+    });
+    const data=await res.json();
+    typing.remove();
+    const reply=data.content?.[0]?.text||"I'm having trouble connecting. Please email us at hello@zessolutions.in or WhatsApp us!";
+    appendMsg(reply,'bot');
+    chatHistory.push({role:'assistant',content:reply});
+  }catch(e){
+    typing.remove();
+    appendMsg("Sorry, I'm having a connection issue. Please reach us at hello@zessolutions.in or click the WhatsApp button!",'bot');
+  }
+}
+
+function sendSuggestion(text){
+  document.getElementById('chat-input').value=text;
+  sendMessage();
+}
+
+function appendMsg(text,type){
+  const wrap=document.getElementById('chat-messages');
+  const el=document.createElement('div');
+  el.className=`msg ${type}`;
+  el.textContent=text;
+  wrap.appendChild(el);
+  wrap.scrollTop=wrap.scrollHeight;
+  return el;
+}
+
+function appendTyping(){
+  const wrap=document.getElementById('chat-messages');
+  const el=document.createElement('div');
+  el.className='msg bot typing';
+  el.innerHTML='<span></span><span></span><span></span>';
+  el.style.padding='.7rem .9rem';
+  wrap.appendChild(el);
+  wrap.scrollTop=wrap.scrollHeight;
+  return el;
+}
+
+// ====== SCROLL ANIMATIONS ======
+const observer=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){e.target.style.animation='fadeUp .6s ease forwards';e.target.style.opacity='1'}
+  });
+},{threshold:0.1});
+document.querySelectorAll('.card,.product-card,.pricing-card,.int-card,.metric-card').forEach(el=>{
+  el.style.opacity='0';observer.observe(el);
+});
+
+// ====== CLOSE MODAL ON OUTSIDE CLICK ======
+document.getElementById('auth-modal').addEventListener('click',function(e){
+  if(e.target===this)closeModal();
+});
+
+// ====== INIT ======
+updatePricing();
+</script>
+</body>
+</html>
