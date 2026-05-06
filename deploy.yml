@@ -1,0 +1,29 @@
+name: Deploy Zes Solutions to Hostinger
+
+on:
+  push:
+    branches:
+      - main   # Runs every time you push to the main branch
+
+jobs:
+  deploy:
+    name: Upload to Hostinger via FTP
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Deploy to Hostinger via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          server-dir: /public_html/   # Hostinger root folder
+          local-dir: ./               # Upload everything in your repo
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/node_modules/**
+            README.md
